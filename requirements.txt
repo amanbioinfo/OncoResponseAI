@@ -1,8 +1,9 @@
-pandas
-numpy
+streamlit==1.32.2
+altair==4.2.2
 xgboost
 scikit-learn
-streamlit
+pandas
+numpy
+joblib
 shap
 matplotlib
-joblib
