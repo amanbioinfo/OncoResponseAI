@@ -1,3 +1,8 @@
+import os
+import streamlit as st
+import pandas as pd
+import joblib
+from src.shap_utils import shap_single
 import streamlit as st
 import pandas as pd
 import joblib
@@ -5,11 +10,16 @@ from src.shap_utils import shap_single
 
 st.set_page_config(page_title="GDSC Drug Sensitivity Predictor", layout="wide")
 
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+
 @st.cache_resource
 def load_model():
-    model = joblib.load("models/xgb_best_model.pkl")
-    features = joblib.load("models/feature_columns.pkl")
+    model = joblib.load(os.path.join(MODEL_DIR, "xgb_best_model.pkl"))
+    features = joblib.load(os.path.join(MODEL_DIR, "feature_columns.pkl"))
     return model, features
+
 
 model, feature_cols = load_model()
 
